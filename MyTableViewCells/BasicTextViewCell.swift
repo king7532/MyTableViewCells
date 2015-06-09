@@ -42,13 +42,13 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         //self.textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         //self.textView.contentInset = UIEdgeInsetsMake(-5.0, -4.0, -5.0, 0.0);
         
-        //self.textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.textView.textContainer.lineFragmentPadding = 0;
         self.textView.textAlignment = .Natural
         self.textView.font = UIFont.systemFontOfSize(17.0)
         self.textView.backgroundColor = UIColor.yellowColor()
         
-        self.textView.layoutManager.allowsNonContiguousLayout = false;
+        //self.textView.layoutManager.allowsNonContiguousLayout = false;
         
         self.contentView.addSubview(self.textView)
         
@@ -71,10 +71,9 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.textView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions(3), context: nil)
         })
-        
-        
+    
     }
-        
+    
     override func updateConstraints() {
         super.updateConstraints()
         
@@ -84,15 +83,6 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-hMargin-[textView]-hMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-vMargin-[textView]-vMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
-    }
-    
-    override func becomeFirstResponder() -> Bool {
-        return self.textView.becomeFirstResponder()
-    }
-    
-    override func resignFirstResponder() -> Bool {
-        let ret = super.resignFirstResponder()
-        return self.textView.resignFirstResponder() || ret;
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -124,20 +114,12 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         }
     }
     
-    func textViewDidChange(textView: UITextView) {
-        /*let fittingSize = self.textView!.contentSize
-        
-        
-        let tableView = (self.superview?.superview as! UITableView);
-        
-        UIView.setAnimationsEnabled(false)
-        
-        tableView.beginUpdates()
-        self.textView.contentOffset = contentOffsetToShowLastLine
-        self.textViewHeightConstraint.constant = fittingSize.height
-        tableView.endUpdates()
-        
-        UIView.setAnimationsEnabled(true)
-        */
+    override func becomeFirstResponder() -> Bool {
+        return self.textView.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        let ret = super.resignFirstResponder()
+        return self.textView.resignFirstResponder() || ret;
     }
 }
