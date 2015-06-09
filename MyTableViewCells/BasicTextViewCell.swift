@@ -12,6 +12,9 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
     
     var textView: UITextView!
     var textViewHeightConstraint: NSLayoutConstraint!
+    var tableView :UITableView {
+        return self.superview?.superview as! UITableView
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
@@ -48,15 +51,13 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         self.textView.font = UIFont.systemFontOfSize(17.0)
         self.textView.backgroundColor = UIColor.yellowColor()
         
-        //self.textView.layoutManager.allowsNonContiguousLayout = false;
-        
         self.contentView.addSubview(self.textView)
         
         self.textView.delegate = self
         
-//        let heightConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: nil, attribute: .Height, multiplier: 1.0, constant: 44)
-//        heightConstraint.priority = 800
-        //self.contentView.addConstraint(heightConstraint)
+        let heightConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: self.textView, attribute: .Height, multiplier: 1.0, constant: 44)
+        heightConstraint.priority = 800
+        self.contentView.addConstraint(heightConstraint)
         
         self.textViewHeightConstraint = NSLayoutConstraint(item: self.textView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 21)
         self.textViewHeightConstraint.priority = 800;
@@ -94,7 +95,6 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
             
             //let dy = newContentSize.height - oldConentSize.height
             
-            
             let tableView = (self.superview?.superview as! UITableView);
             
             //UIView.setAnimationsEnabled(false)
@@ -122,4 +122,20 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         let ret = super.resignFirstResponder()
         return self.textView.resignFirstResponder() || ret;
     }
+    
+//    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+//        
+//        if(text == "\n") {
+//            println("shouldChangeTextInRange: \\n")
+//            self.tableView.beginUpdates()
+//            self.textViewHeightConstraint.constant = self.textView.bounds.height + 21    //newContentSize.height
+//            
+//            self.setNeedsUpdateConstraints()
+//            self.layoutIfNeeded()
+//            
+//            self.tableView.endUpdates()
+//        }
+//        
+//        return true
+//    }
 }
