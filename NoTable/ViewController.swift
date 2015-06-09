@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  MyTableViewCells
+//  NoTable
 //
-//  Created by Benjamin King on 4/22/15.
+//  Created by Benjamin King on 6/9/15.
 //  Copyright (c) 2015 Benjamin King. All rights reserved.
 //
 
@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var containerView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +21,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
