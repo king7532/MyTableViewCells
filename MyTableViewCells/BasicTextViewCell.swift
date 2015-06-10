@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
+class BasicTextViewCell: UITableViewCell {
     
     var textView: UITextView!
     var textViewHeightConstraint: NSLayoutConstraint!
@@ -47,8 +47,6 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         
         self.contentView.addSubview(self.textView)
         
-        self.textView.delegate = self
-        
         let heightConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: self.textView, attribute: .Height, multiplier: 1.0, constant: 44)
         heightConstraint.priority = 800
         self.contentView.addConstraint(heightConstraint)
@@ -57,7 +55,12 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         self.textViewHeightConstraint.priority = 800;
         self.textView.addConstraint(self.textViewHeightConstraint)
         
-        self.setNeedsUpdateConstraints()
+        let metrics = ["vMargin": 10, "hMargin": self.separatorInset.left]
+        let views = ["textView" : self.textView]
+        
+        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-hMargin-[textView]-hMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
+        
+        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-vMargin-[textView]-vMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
     }
     
     override func didMoveToWindow() {
@@ -69,31 +72,15 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
     
     }
     
-    override func updateConstraints() {
-        super.updateConstraints()
-        
-        let metrics = ["vMargin": 10, "hMargin": self.separatorInset.left]
-        let views = ["textView" : self.textView]
-        
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-hMargin-[textView]-hMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
-        
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-vMargin-[textView]-vMargin-|", options: .DirectionLeadingToTrailing, metrics: metrics, views: views))
-    }
-    
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
         if let textView = object as? UITextView {
-            var oldConentSize = change[NSKeyValueChangeOldKey]!.CGSizeValue()
+            //var oldConentSize = change[NSKeyValueChangeOldKey]!.CGSizeValue()
             let newContentSize = change[NSKeyValueChangeNewKey]!.CGSizeValue()
-            
-            //oldConentSize.height = min(oldConentSize.height, 0)
-            
-            //let dy = newContentSize.height - oldConentSize.height
-            
-            let tableView = (self.superview?.superview as! UITableView);
             
             //UIView.setAnimationsEnabled(false)
             
-            tableView.beginUpdates()
+            self.tableView.beginUpdates()
             self.textViewHeightConstraint.constant = newContentSize.height
             
             self.setNeedsUpdateConstraints()
@@ -102,7 +89,7 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
             //let contentOffsetToShowLastLine = CGPointMake(0, newContentSize.height - CGRectGetHeight(self.textView.bounds))
             //self.textView.contentOffset = contentOffsetToShowLastLine
             
-            tableView.endUpdates()
+            self.tableView.endUpdates()
             
             //UIView.setAnimationsEnabled(true)
         }
@@ -116,20 +103,4 @@ class BasicTextViewCell: UITableViewCell, UITextViewDelegate {
         let ret = super.resignFirstResponder()
         return self.textView.resignFirstResponder() || ret;
     }
-    
-//    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-//        
-//        if(text == "\n") {
-//            println("shouldChangeTextInRange: \\n")
-//            self.tableView.beginUpdates()
-//            self.textViewHeightConstraint.constant = self.textView.bounds.height + 21    //newContentSize.height
-//            
-//            self.setNeedsUpdateConstraints()
-//            self.layoutIfNeeded()
-//            
-//            self.tableView.endUpdates()
-//        }
-//        
-//        return true
-//    }
 }

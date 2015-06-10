@@ -42,16 +42,21 @@ class MyTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         var cellID :String?
         
-        switch(indexPath.row) {
-        case 0: cellID = "MyBasicTextFieldCell"
-        //case 0: cellID = "LabelSwitchCell"
-        case 1: cellID = "MyBasicTextViewCell"
-        //case 2: cellID = "MyBasicDatePickerCell"
-        case 3: cellID = "LabelSwitchCell"
-        default: ()
+//        switch(indexPath.row) {
+//        case 0: cellID = "MyBasicTextFieldCell"
+//        case 1: cellID = "MyBasicTextViewCell"
+//        case 2: cellID = "MyBasicDatePickerCell"
+//        case 3: cellID = "LabelSwitchCell"
+//        default: ()
+//        }
+        
+        if(indexPath.row == 2) {
+            cellID = "MyBasicTextViewCell"
         }
+        
         if(cellID != nil) {
             return self.tableView.dequeueReusableCellWithIdentifier(cellID!, forIndexPath: indexPath) as! UITableViewCell
         }
@@ -64,9 +69,9 @@ class MyTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        if(indexPath.row > 3) {
+        if(cell.reuseIdentifier == "BasicCell") {
             cell.textLabel!.text = "Basic Table Cell"
-            cell.detailTextLabel!.text = "DetailedLabel"
+            //cell.detailTextLabel!.text = "DetailedLabel"
         }
         else if(cell is LabelSwitchCell) {
             (cell as! LabelSwitchCell).switchLabel!.text = "Switch Cell"

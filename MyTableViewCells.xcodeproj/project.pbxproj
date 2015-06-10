@@ -70,13 +70,13 @@
 		3C1CB4351B276BE2003024EB /* NoTable */ = {
 			isa = PBXGroup;
 			children = (
+				3C1CB4561B276C84003024EB /* ContainerView.swift */,
 				3C1CB4381B276BE2003024EB /* AppDelegate.swift */,
 				3C1CB43A1B276BE2003024EB /* ViewController.swift */,
 				3C1CB43C1B276BE2003024EB /* Main.storyboard */,
 				3C1CB43F1B276BE2003024EB /* Images.xcassets */,
 				3C1CB4411B276BE2003024EB /* LaunchScreen.xib */,
 				3C1CB4361B276BE2003024EB /* Supporting Files */,
-				3C1CB4561B276C84003024EB /* ContainerView.swift */,
 			);
 			path = NoTable;
 			sourceTree = "<group>";
@@ -87,6 +87,16 @@
 				3C1CB4371B276BE2003024EB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C5FF0471B28B40E0083154E /* OtherCells */ = {
+			isa = PBXGroup;
+			children = (
+				3CB33FC61AE8240C0012E4A4 /* BasicTextFieldCell.swift */,
+				3C921F111AE98E1800604203 /* BasicDatePickerCell.swift */,
+				3C8F00821AEA083E00D658B1 /* LabelSwitchCell.swift */,
+			);
+			name = OtherCells;
 			sourceTree = "<group>";
 		};
 		3CB33F961AE822D20012E4A4 = {
@@ -111,12 +121,10 @@
 		3CB33FA11AE822D20012E4A4 /* MyTableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				3CB33FC61AE8240C0012E4A4 /* BasicTextFieldCell.swift */,
+				3CB33FA41AE822D20012E4A4 /* AppDelegate.swift */,
 				3CB33FC41AE823470012E4A4 /* MyTableViewController.swift */,
 				3C210B261AE941F20009E1C0 /* BasicTextViewCell.swift */,
-				3C921F111AE98E1800604203 /* BasicDatePickerCell.swift */,
-				3C8F00821AEA083E00D658B1 /* LabelSwitchCell.swift */,
-				3CB33FA41AE822D20012E4A4 /* AppDelegate.swift */,
+				3C5FF0471B28B40E0083154E /* OtherCells */,
 				3CB33FA81AE822D20012E4A4 /* Main.storyboard */,
 				3CB33FAB1AE822D20012E4A4 /* Images.xcassets */,
 				3CB33FAD1AE822D20012E4A4 /* LaunchScreen.xib */,
@@ -405,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyTableViewCells/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,7 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyTableViewCells/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
