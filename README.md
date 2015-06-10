@@ -1,5 +1,8 @@
 # MyTableViewCellsTests
 
+* **Master** branch = Swift 1.2 and iOS 8.3 deployment target with Xcode 6.3.2
+* **ios9** branch = Swift 2 and iOS 9 (beta) deployment target with Xcode 7
+
 ### Title
 
 UITextView display bug inside custom UITableViewCell but not in a custom UIView
