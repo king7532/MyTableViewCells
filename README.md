@@ -4,7 +4,7 @@
 
 UITextView display bug inside custom UITableViewCell but not in a custom UIView
 
-rdar://
+[rdar://21326124](http://openradar.appspot.com/21326124)
 
 ### Description
 
