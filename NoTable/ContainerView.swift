@@ -15,7 +15,7 @@ class ContainerView: UIView {
     
     override func awakeFromNib()  {
         self.textView = UITextView()
-        self.textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.textView.translatesAutoresizingMaskIntoConstraints = false
         self.textView.keyboardDismissMode = .Interactive
         
         // Does NOTHING
@@ -50,15 +50,15 @@ class ContainerView: UIView {
         super.didMoveToWindow()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.textView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions(3), context: nil)
+            self.textView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions(rawValue: 3), context: nil)
         })
     }
 
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
-        if let textView = object as? UITextView {
+        if let _ = object as? UITextView {
             //var oldConentSize = change[NSKeyValueChangeOldKey]!.CGSizeValue()
-            let newContentSize = change[NSKeyValueChangeNewKey]!.CGSizeValue()
+            let newContentSize = change![NSKeyValueChangeNewKey]!.CGSizeValue()
             
             //UIView.setAnimationsEnabled(false)
             

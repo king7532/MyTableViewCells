@@ -40,15 +40,15 @@ class LabelSwitchCell: UITableViewCell {
     
     func cellInit() {
         self.uiSwitch = UISwitch()
-        self.uiSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.uiSwitch.translatesAutoresizingMaskIntoConstraints = false
         self.uiSwitch.on = false
         self.contentView.addSubview(self.uiSwitch)
         
         self.switchLabel = UILabel()
-        self.switchLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.switchLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.switchLabel)
         
-        var contentConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        let contentConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
         contentConstraint.priority = 750    // DefaultHigh
         self.addConstraint(contentConstraint)
         
@@ -64,9 +64,9 @@ class LabelSwitchCell: UITableViewCell {
         self.contentView.removeConstraints(self.myConstraints)
         self.myConstraints = [NSLayoutConstraint]()
         
-        self.myConstraints.extend(NSLayoutConstraint.constraintsWithVisualFormat("H:[uiSwitch]-hMargin-|", options: .AlignAllCenterY, metrics: metrics, views: views) as! [NSLayoutConstraint])
+        self.myConstraints.extend(NSLayoutConstraint.constraintsWithVisualFormat("H:[uiSwitch]-hMargin-|", options: .AlignAllCenterY, metrics: metrics, views: views) as [NSLayoutConstraint])
         
-        self.myConstraints.extend(NSLayoutConstraint.constraintsWithVisualFormat("H:|-hMargin-[switchLabel]", options: .AlignAllCenterY, metrics: metrics, views: views) as! [NSLayoutConstraint])
+        self.myConstraints.extend(NSLayoutConstraint.constraintsWithVisualFormat("H:|-hMargin-[switchLabel]", options: .AlignAllCenterY, metrics: metrics, views: views) as [NSLayoutConstraint])
         
         self.myConstraints.append(NSLayoutConstraint(item: self.switchLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: 0))
         

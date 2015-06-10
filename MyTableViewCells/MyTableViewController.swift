@@ -58,10 +58,10 @@ class MyTableViewController: UITableViewController {
         }
         
         if(cellID != nil) {
-            return self.tableView.dequeueReusableCellWithIdentifier(cellID!, forIndexPath: indexPath) as! UITableViewCell
+            return self.tableView.dequeueReusableCellWithIdentifier(cellID!, forIndexPath: indexPath) as UITableViewCell
         }
         else {
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("BasicCell") as! UITableViewCell?
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("BasicCell") as UITableViewCell?
             cell = UITableViewCell(style: .Value1, reuseIdentifier: "BasicCell")
             return cell!
         }

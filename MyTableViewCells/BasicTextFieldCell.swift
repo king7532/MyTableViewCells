@@ -38,12 +38,12 @@ class BasicTextFieldCell: UITableViewCell {
     func cellInit() {
 
         self.textField = UITextField()
-        self.textField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.textField.translatesAutoresizingMaskIntoConstraints = false
         self.textField.placeholder = "Hello World"
         self.textField.backgroundColor = UIColor.greenColor()
         self.contentView.addSubview(textField)
         
-        var contentConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        let contentConstraint = NSLayoutConstraint(item: self.contentView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
         contentConstraint.priority = 750    // DefaultHigh
         self.addConstraint(contentConstraint)
         

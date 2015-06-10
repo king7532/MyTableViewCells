@@ -34,7 +34,7 @@ class BasicDatePickerCell: UITableViewCell {
     
     func cellInit() {
         self.datePicker = UIDatePicker()
-        self.datePicker.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.datePicker.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.datePicker)
         
         self.setNeedsUpdateConstraints()
