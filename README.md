@@ -3,6 +3,7 @@
 ### Title
 
 UITextView display bug inside custom UITableViewCell but not in a custom UIView
+
 rdar://
 
 ### Description
@@ -11,8 +12,8 @@ I have a custom UITableViewCell with a UITextView and using constraints to pin i
 
 However, the *same* UITextView code behaves differently in a custom UITableViewCell compared to a UIView.  In the UITableViewCell the first line of text scrolls out of view for every even line of text added but not every odd line!  This does not happen in the custo UIView.  See the screen shots:
 
-![Odd Line - Good](https://github.com/king7532/MyTableViewCells/OddLine-Good.png)
-![Even Line - Bad](https://github.com/king7532/MyTableViewCells/EvenLine-Bad.png)
+![Odd Line - Good](https://github.com/king7532/MyTableViewCells/blob/master/OddLine-Good.png)
+![Even Line - Bad](https://github.com/king7532/MyTableViewCells/blob/master/EvenLine-Bad.png)
 
 ### Steps to Reproduce
 
